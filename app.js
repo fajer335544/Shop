@@ -1,3 +1,10 @@
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+
+
 const path = require('path');
 const fs=require('fs');
 
@@ -20,8 +27,8 @@ const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 
 console.log(process.env.NODE_ENV)
-//'mongodb://localhost:27017/all'
-const MONGODB_URI =`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@all.wdvj9h4.mongodb.net/all?retryWrites=true&w=majority`;
+  const MONGODB_URI ='mongodb://localhost:27017/all' //you must download mongodb in your PC
+
            
 
 const app = express();
@@ -36,6 +43,7 @@ const fileStorage=multer.diskStorage({
     cb(null, 'images/')
   },
   
+
   filename:(req,file,cb)=>{
 
     cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname))
@@ -63,6 +71,9 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
+
+
+console.log(process.env.MONGO_USER+"hi fajer");
 
 app.use(helmet());
 app.use(compression())
