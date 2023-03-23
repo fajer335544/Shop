@@ -27,7 +27,7 @@ const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 
 console.log(process.env.NODE_ENV)
-  const MONGODB_URI ='mongodb://localhost:27017/all' //you must download mongodb in your PC
+  const MONGODB_URI ='mongodb://0.0.0.0:27017/all' //you must download mongodb in your PC
 
            
 
